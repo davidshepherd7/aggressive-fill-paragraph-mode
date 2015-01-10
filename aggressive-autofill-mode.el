@@ -1,15 +1,22 @@
-;; messes up python, emacs lisp, bash and should be disabled in minibuffer
 
-(defun fill-then-insert-space ()
+
+;; Automatically call fill paragraph when space is pressed when
+;; appropriate (i.e. inside comments, in text modes).
+
+(defun aaf-fill-then-insert-space ()
   (interactive)
   (fill-paragraph)
   (just-one-space 1))
 
-(defun insert-space ()
+(defun aaf-insert-space ()
   (interactive)
   (insert " "))
 
-(global-set-key (kbd "SPC") #'fill-then-insert-space)
-(global-set-key (kbd "M-SPC") #'insert-space)
+(define-minor-mode aggressive-autofill-mode
+  nil
+  :keymap (let ((map (make-sparse-keymap)))
+            (define-key map (kbd "SPC") #'aaf-fill-then-insert-space)
+            (define-key map (kbd "M-SPC") #'aaf-insert-space)
+            map))
 
-(provide 'aggressive-autofill-mode)
+ (provide 'aggressive-autofill-mode)
