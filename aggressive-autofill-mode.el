@@ -19,7 +19,6 @@
             (define-key map (kbd "M-SPC") #'aaf-insert-space)
             map))
 
-
 (defun aaf-setup-recommended-hooks ()
   "Install hooks to enable aggressive-autofill-mode in recommended major modes."
   (interactive)
@@ -28,4 +27,4 @@
   (add-hook 'prog-mode-hook #'aggressive-autofill-mode))
 
 
- (provide 'aggressive-autofill-mode)
+(provide 'aggressive-autofill-mode)
