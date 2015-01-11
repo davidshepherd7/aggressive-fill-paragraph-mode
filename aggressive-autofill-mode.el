@@ -7,17 +7,26 @@
 ;; Functions for testing conditions to supress fill-paragraph
 
 (defun aaf-current-line ()
-  (let* ((p1 (line-beginning-position))
-         (p2 (line-end-position)))
-    (buffer-substring-no-properties p1 p2)))
+  (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
 
 (defun aaf-markdown-inside-code-block? ()
   """Basic test for indented code blocks in markdown."""
   (and (string-equal major-mode "markdown-mode")
        (string-match-p "^    " (aaf-current-line))))
 
+
+(defun aaf-bullet-list-in-comments? ()
+  "Try to check if we are inside a bullet pointed list."
+  (and (comment-only-p (point-at-bol) (point-at-eol))
+
+       ;; TODO: extend to match any line in paragraph
+       (string-match-p (concat "^[ ]*" comment-start "[ ]*[-\\*\\+]")
+                       (aaf-current-line))))
+
+
 (defcustom aaf-supress-fill-pfunction-list
-  (list #'aaf-markdown-inside-code-block?)
+  (list #'aaf-markdown-inside-code-block?
+        #'aaf-bullet-list-in-comments?)
   "List of predicate functions of no arguments, if any of these
   functions returns false then paragraphs will not be filled
   automatically.")
