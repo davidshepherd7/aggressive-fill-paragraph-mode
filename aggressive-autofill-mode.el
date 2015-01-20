@@ -37,8 +37,7 @@
 
 (defun aaf-supress-fill? ()
   "Check all functions in aaf-supress-fill-pfunction-list"
-  (-any? #'identity
-         (mapcar #'funcall aaf-supress-fill-pfunction-list)))
+  (-any? #'funcall aaf-supress-fill-pfunction-list))
 
 (defun aaf-fill-then-insert-space ()
   (interactive)
