@@ -1,32 +1,33 @@
+;;; aggressive-fill-paragraph.el --- A minor mode to keep comment paragraphs filled
 
-
-
+;; Author: David Shepherd <davidshepherd7@gmail.com>
+;; Version: 0.0.1
 
 
 
 ;; Functions for testing conditions to suppress fill-paragraph
 
-(defun aaf-current-line ()
+(defun afp-current-line ()
   (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
 
-(defun aaf-markdown-inside-code-block? ()
+(defun afp-markdown-inside-code-block? ()
   """Basic test for indented code blocks in markdown."""
   (and (string-equal major-mode "markdown-mode")
-       (string-match-p "^    " (aaf-current-line))))
+       (string-match-p "^    " (afp-current-line))))
 
 
-(defun aaf-bullet-list-in-comments? ()
+(defun afp-bullet-list-in-comments? ()
   "Try to check if we are inside a bullet pointed list."
   (and (comment-only-p (point-at-bol) (point-at-eol))
 
        ;; TODO: extend to match any line in paragraph
        (string-match-p (concat "^[ ]*" comment-start "[ ]*[-\\*\\+]")
-                       (aaf-current-line))))
+                       (afp-current-line))))
 
 
-(defcustom aaf-suppress-fill-pfunction-list
-  (list #'aaf-markdown-inside-code-block?
-        #'aaf-bullet-list-in-comments?)
+(defcustom afp-suppress-fill-pfunction-list
+  (list #'afp-markdown-inside-code-block?
+        #'afp-bullet-list-in-comments?)
   "List of predicate functions of no arguments, if any of these
   functions returns false then paragraphs will not be filled
   automatically.")
@@ -35,17 +36,17 @@
 
 ;; The main functions
 
-(defun aaf-suppress-fill? ()
-  "Check all functions in aaf-suppress-fill-pfunction-list"
-  (-any? #'funcall aaf-suppress-fill-pfunction-list))
+(defun afp-suppress-fill? ()
+  "Check all functions in afp-suppress-fill-pfunction-list"
+  (-any? #'funcall afp-suppress-fill-pfunction-list))
 
-(defun aaf-fill-then-insert-space ()
+(defun afp-fill-then-insert-space ()
   (interactive)
-  (when (not (aaf-suppress-fill?))
+  (when (not (afp-suppress-fill?))
     (fill-paragraph))
   (just-one-space 1))
 
-(defun aaf-insert-space ()
+(defun afp-insert-space ()
   (interactive)
   (insert " "))
 
@@ -56,11 +57,11 @@
 (define-minor-mode aggressive-autofill-mode
   nil
   :keymap (let ((map (make-sparse-keymap)))
-            (define-key map (kbd "SPC") #'aaf-fill-then-insert-space)
-            (define-key map (kbd "M-SPC") #'aaf-insert-space)
+            (define-key map (kbd "SPC") #'afp-fill-then-insert-space)
+            (define-key map (kbd "M-SPC") #'afp-insert-space)
             map))
 
-(defun aaf-setup-recommended-hooks ()
+(defun afp-setup-recommended-hooks ()
   "Install hooks to enable aggressive-autofill-mode in recommended major modes."
   (interactive)
 
@@ -69,3 +70,5 @@
 
 
 (provide 'aggressive-autofill-mode)
+
+;;; aggressive-fill-paragraph.el ends here

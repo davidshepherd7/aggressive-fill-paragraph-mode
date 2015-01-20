@@ -1,4 +1,4 @@
-Aggressive autofill mode
+Aggressive fill paragraph
 ========================
 
 An emacs minor-mode for keeping paragraphs filled in both comments and prose.
@@ -13,7 +13,7 @@ is ususally bound to M-space).
 Setup
 =====
 
-Make sure that the file `aggressive-autofill-mode.el` is loaded, then call
+Make sure that the file `aggressive-fill-paragraph.el` is loaded, then call
 
     (aaf-setup-recommended-hooks)
 
