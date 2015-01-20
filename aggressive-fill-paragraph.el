@@ -54,7 +54,7 @@
 
 ;; Minor mode set up
 
-(define-minor-mode aggressive-autofill-mode
+(define-minor-mode aggressive-fill-paragraph-mode
   nil
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map (kbd "SPC") #'afp-fill-then-insert-space)
@@ -62,13 +62,13 @@
             map))
 
 (defun afp-setup-recommended-hooks ()
-  "Install hooks to enable aggressive-autofill-mode in recommended major modes."
+  "Install hooks to enable aggressive-fill-paragraph-mode in recommended major modes."
   (interactive)
 
-  (add-hook 'text-mode-hook #'aggressive-autofill-mode)
-  (add-hook 'prog-mode-hook #'aggressive-autofill-mode))
+  (add-hook 'text-mode-hook #'aggressive-fill-paragraph-mode)
+  (add-hook 'prog-mode-hook #'aggressive-fill-paragraph-mode))
 
 
-(provide 'aggressive-autofill-mode)
+(provide 'aggressive-fill-paragraph)
 
 ;;; aggressive-fill-paragraph.el ends here
