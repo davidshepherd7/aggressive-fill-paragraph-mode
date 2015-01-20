@@ -4,7 +4,7 @@
 
 
 
-;; Functions for testing conditions to supress fill-paragraph
+;; Functions for testing conditions to suppress fill-paragraph
 
 (defun aaf-current-line ()
   (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
@@ -24,7 +24,7 @@
                        (aaf-current-line))))
 
 
-(defcustom aaf-supress-fill-pfunction-list
+(defcustom aaf-suppress-fill-pfunction-list
   (list #'aaf-markdown-inside-code-block?
         #'aaf-bullet-list-in-comments?)
   "List of predicate functions of no arguments, if any of these
@@ -35,13 +35,13 @@
 
 ;; The main functions
 
-(defun aaf-supress-fill? ()
-  "Check all functions in aaf-supress-fill-pfunction-list"
-  (-any? #'funcall aaf-supress-fill-pfunction-list))
+(defun aaf-suppress-fill? ()
+  "Check all functions in aaf-suppress-fill-pfunction-list"
+  (-any? #'funcall aaf-suppress-fill-pfunction-list))
 
 (defun aaf-fill-then-insert-space ()
   (interactive)
-  (when (not (aaf-supress-fill?))
+  (when (not (aaf-suppress-fill?))
     (fill-paragraph))
   (just-one-space 1))
 
