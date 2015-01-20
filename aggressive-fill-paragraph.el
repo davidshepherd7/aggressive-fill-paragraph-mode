@@ -36,15 +36,43 @@
 
 ;; The main functions
 
+
+(defun afp-only-fill-comments (&optional justify)
+  "Replacement fill-paragraph function which only fills comments
+and leaves everything else alone."
+  (fill-comment-paragraph (justify))
+
+  ;; returning true says we are done with filling, don't fill anymore
+  t)
+
+
 (defun afp-suppress-fill? ()
   "Check all functions in afp-suppress-fill-pfunction-list"
   (-any? #'funcall afp-suppress-fill-pfunction-list))
 
+
+(defun afp-choose-fill-function ()
+  "Select which fill paragraph function to use"
+  (cond
+
+   ;; In certain modes it is better to use afp-only-fill-comments to avoid
+   ;; strange behaviour in code.
+   ((-any? #'derived-mode-p (list 'emacs-lisp-mode 'sh-mode 'python-mode))
+    #'afp-only-fill-comments)
+
+   ;; Otherwise just use the default one
+   (t fill-paragraph-function)))
+
+
 (defun afp-fill-then-insert-space ()
+  "The main function: fill the paragraph (if not suppressed,
+using the appropriate fill function), then insert a space."
   (interactive)
   (when (not (afp-suppress-fill?))
-    (fill-paragraph))
+    (let ((fill-paragraph-function (afp-choose-fill-function))
+          (fill-paragraph))))
   (just-one-space 1))
+
 
 (defun afp-insert-space ()
   (interactive)
