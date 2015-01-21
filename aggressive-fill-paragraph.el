@@ -40,7 +40,7 @@
 (defun afp-only-fill-comments (&optional justify)
   "Replacement fill-paragraph function which only fills comments
 and leaves everything else alone."
-  (fill-comment-paragraph (justify))
+  (fill-comment-paragraph justify)
 
   ;; returning true says we are done with filling, don't fill anymore
   t)
