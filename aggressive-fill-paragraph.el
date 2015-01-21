@@ -67,17 +67,19 @@ and leaves everything else alone."
    ;; and docstrings are both handled by the same chunk of code, so even
    ;; normal strings would be filled.
 
+
+   ;; Use the buffer local fill function if it's set
+   ((not (null fill-paragraph-function)) fill-paragraph-function)
+
    ;; Otherwise just use the default one
-   (t fill-paragraph-function)))
+   (t #'fill-paragraph)))
 
 
 (defun afp-fill-then-insert-space ()
   "The main function: fill the paragraph (if not suppressed,
 using the appropriate fill function), then insert a space."
   (interactive)
-  (when (not (afp-suppress-fill?))
-    (let ((fill-paragraph-function (afp-choose-fill-function))
-          (fill-paragraph))))
+  (when (not (afp-suppress-fill?)) (funcall (afp-choose-fill-function)))
   (just-one-space 1))
 
 
