@@ -14,6 +14,8 @@
 ;; On the requirements: emacs 24.4+ is required because the behavour of
 ;; just-one-space has changed. Probably any recent version of dash will do.
 
+(require 'dash)
+
 
 ;; Functions for testing conditions to suppress fill-paragraph
 
