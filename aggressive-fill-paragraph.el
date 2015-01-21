@@ -2,7 +2,17 @@
 
 ;; Author: David Shepherd <davidshepherd7@gmail.com>
 ;; Version: 0.0.1
+;; Package-Requires: ((emacs "24.4") (dash "2.10.0"))
+;; URL: https://github.com/davidshepherd7/aggressive-fill-paragraph-mode
+;; Keywords: fill-paragraph, automatic, comments
 
+;;; Commentary:
+
+
+;;; Code:
+
+;; On the requirements: emacs 24.4+ is required because the behavour of
+;; just-one-space has changed. Probably any recent version of dash will do.
 
 
 ;; Functions for testing conditions to suppress fill-paragraph
