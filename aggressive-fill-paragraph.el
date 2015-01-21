@@ -57,7 +57,7 @@ and leaves everything else alone."
 
    ;; In certain modes it is better to use afp-only-fill-comments to avoid
    ;; strange behaviour in code.
-   ((-any? #'derived-mode-p (list 'emacs-lisp-mode 'sh-mode 'python-mode))
+   ((derived-mode-p 'emacs-lisp-mode 'sh-mode 'python-mode)
     #'afp-only-fill-comments)
 
    ;; Otherwise just use the default one
