@@ -29,8 +29,9 @@
   (list #'afp-markdown-inside-code-block?
         #'afp-bullet-list-in-comments?)
   "List of predicate functions of no arguments, if any of these
-  functions returns false then paragraphs will not be filled
-  automatically.")
+  functions returns false then paragraphs will not be
+  automatically filled."
+  :group 'aggressive-fill-paragraph)
 
 
 
