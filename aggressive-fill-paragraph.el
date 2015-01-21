@@ -60,6 +60,12 @@ and leaves everything else alone."
    ((derived-mode-p 'emacs-lisp-mode 'sh-mode 'python-mode)
     #'afp-only-fill-comments)
 
+   ;; For python we could also do something with let-binding
+   ;; python-fill-paren-function so that code is left alone. This would
+   ;; allow docstrings to be filled, but unfortunately filling of strings
+   ;; and docstrings are both handled by the same chunk of code, so even
+   ;; normal strings would be filled.
+
    ;; Otherwise just use the default one
    (t fill-paragraph-function)))
 
