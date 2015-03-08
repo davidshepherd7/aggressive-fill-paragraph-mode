@@ -46,10 +46,20 @@
        (string-match-p (concat "^[ ]*" comment-start "[ ]*[-\\*\\+]")
                        (afp-current-line))))
 
+;; Org mode tables have their own filling behaviour which results in the
+;; cursor being moved to the start of the table element, which is no good
+;; for us! See issue #6.
+(require 'org)
+(defun afp-in-org-table? ()
+  (interactive)
+  (and (derived-mode-p 'org-mode)
+       (or (eql (org-element-type (org-element-at-point)) 'table)
+           (eql (org-element-type (org-element-at-point)) 'table-row))))
 
 (defcustom afp-suppress-fill-pfunction-list
   (list #'afp-markdown-inside-code-block?
-        #'afp-bullet-list-in-comments?)
+        #'afp-bullet-list-in-comments?
+        #'afp-in-org-table?)
   "List of predicate functions of no arguments, if any of these
   functions returns false then paragraphs will not be
   automatically filled."
