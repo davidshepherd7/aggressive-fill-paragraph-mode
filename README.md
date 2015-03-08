@@ -5,12 +5,12 @@ An emacs minor-mode for keeping paragraphs filled in both comments and prose.
 
 Each time a space is inserted the current paragraph is refilled.
 
-M-space can be used to only insert a space (chosen because the behaviour of
-space with this mode is enabled is very similar to `just-one-space`, which
-is ususally bound to M-space).
+C-q space or `just-one-space` (usually bound to M-space) can be used to
+insert a space without filling the paragraph.
 
 Some special behaviour is implemented in a few major modes where the
-default fill-paragraph behaviour would affect code as well as comments.
+default fill-paragraph behaviour would not work well, for example when code
+would be filled as well as comments.
 
 
 Setup
