@@ -18,7 +18,7 @@ Setup
 
 Make sure that the file `aggressive-fill-paragraph.el` is loaded, then call
 
-    (aaf-setup-recommended-hooks)
+    (afp-setup-recommended-hooks)
 
 to enable the minor mode in all places where it might be useful.
 Alternatively use
