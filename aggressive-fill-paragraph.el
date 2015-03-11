@@ -12,8 +12,8 @@
 
 ;;; Code:
 
-;; On the requirements: emacs 24.4+ is required because the behavour of
-;; just-one-space has changed. Probably any recent version of dash will do.
+;; On the requirements: Older versions of emacs might work, but are
+;; untested. Probably any recent version of dash will do.
 
 (require 'dash)
 
