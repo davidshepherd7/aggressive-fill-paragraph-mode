@@ -56,6 +56,11 @@
   automatically filled."
   :group 'aggressive-fill-paragraph)
 
+(defcustom afp-fill-comments-only-mode-list
+  (list 'emacs-lisp-mode 'sh-mode 'python-mode)
+  "List of major modes in which only comments should be filled."
+  :group 'aggressive-fill-paragraph)
+
 
 
 ;; The main functions
@@ -94,7 +99,7 @@ taking care with special cases for documentation comments."
 
    ;; In certain modes it is better to use afp-only-fill-comments to avoid
    ;; strange behaviour in code.
-   ((derived-mode-p 'emacs-lisp-mode 'sh-mode 'python-mode)
+   ((apply #'derived-mode-p afp-fill-comments-only-mode-list)
     #'afp-only-fill-comments)
 
    ;; For python we could also do something with let-binding

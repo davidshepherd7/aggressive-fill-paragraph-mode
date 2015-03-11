@@ -14,7 +14,7 @@ would be filled as well as comments.
 
 
 Setup
-=====
+-----
 
 Make sure that the file `aggressive-fill-paragraph.el` is loaded, then call
 
@@ -26,3 +26,26 @@ Alternatively use
     (add-hook '[major-mode-hook] #'aggressive-fill-paragraph-mode)
 
 to enable aggressive-fill-paragraph-mode only in specified major modes.
+
+
+Compatability with new major modes
+---------------------------------
+
+There seems to be little consensus between different major modes on what
+exactly `fill-paragraph` should fill. For example some programming modes
+stick to filling commments, while others attempt to fill other things such
+as code and strings.
+
+Typically automatic filling of code paragraphs is not very helpful, so we
+want to disable it. For simple cases where the standard emacs comment
+filling behaviour (as implemented in `fill-comment-paragraph`) suffices this can be
+done by simply adding the major mode to `afp-fill-comments-only-mode-list`,
+e.g.
+
+    (add-to-list 'afp-fill-comments-only-mode-list 'python-mode)
+
+Please submit a bug report or pull request if you find a mode that should
+be in this list by default.
+
+More complex cases will probably require modifications to
+`aggressive-fill-paragraph.el`.
