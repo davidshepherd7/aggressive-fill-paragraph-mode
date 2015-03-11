@@ -75,6 +75,19 @@ and leaves everything else alone."
   (-any? #'funcall afp-suppress-fill-pfunction-list))
 
 
+(defun afp-ess-fill-comments ()
+  "Fill comments in ess-mode (for R and related languages),
+taking care with special cases for documentation comments."
+  ;; Make sure we have the required libraries (this function is only run
+  ;; when (derived-mode-p 'ess-mode) so we should!)
+  (require 'ess-mode)
+  (require ess-roxy)
+
+  (if (ess-roxy-entry-p)
+      (ess-roxy-fill-field)
+    (afp-only-fill-comments)))
+
+
 (defun afp-choose-fill-function ()
   "Select which fill paragraph function to use"
   (cond
@@ -90,6 +103,7 @@ and leaves everything else alone."
    ;; and docstrings are both handled by the same chunk of code, so even
    ;; normal strings would be filled.
 
+   ((derived-mode-p 'ess-mode) #'afp-ess-fill-comments)
 
    ;; Use the buffer local fill function if it's set
    ((not (null fill-paragraph-function)) fill-paragraph-function)
