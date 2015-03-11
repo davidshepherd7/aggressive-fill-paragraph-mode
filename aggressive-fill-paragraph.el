@@ -86,7 +86,7 @@ taking care with special cases for documentation comments."
   ;; Make sure we have the required libraries (this function is only run
   ;; when (derived-mode-p 'ess-mode) so we should!)
   (require 'ess-mode)
-  (require ess-roxy)
+  (require 'ess-roxy)
 
   (if (ess-roxy-entry-p)
       (ess-roxy-fill-field)
