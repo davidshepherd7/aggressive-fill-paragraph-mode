@@ -2,7 +2,7 @@
 
 ;; Author: David Shepherd <davidshepherd7@gmail.com>
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "24.4") (dash "2.10.0"))
+;; Package-Requires: ((dash "2.10.0"))
 ;; URL: https://github.com/davidshepherd7/aggressive-fill-paragraph-mode
 ;; Keywords: fill-paragraph, automatic, comments
 
@@ -11,9 +11,6 @@
 ;; An emacs minor-mode for keeping paragraphs filled in both comments and prose.
 
 ;;; Code:
-
-;; On the requirements: Older versions of emacs might work, but are
-;; untested. Probably any recent version of dash will do.
 
 (require 'dash)
 
