@@ -39,6 +39,7 @@
 ;; cursor being moved to the start of the table element, which is no good
 ;; for us! See issue #6.
 (require 'org)
+(declare-function org-element-type "org-element" element)
 (defun afp-in-org-table? ()
   (interactive)
   (and (derived-mode-p 'org-mode)
@@ -77,6 +78,10 @@ and leaves everything else alone."
   "Check all functions in afp-suppress-fill-pfunction-list"
   (-any? #'funcall afp-suppress-fill-pfunction-list))
 
+
+;; Tell the byte compiler that these functions exist
+(declare-function ess-roxy-entry-p "ess-roxy" nil)
+(declare-function ess-roxy-fill-field "ess-roxy" nil)
 
 (defun afp-ess-fill-comments ()
   "Fill comments in ess-mode (for R and related languages),
