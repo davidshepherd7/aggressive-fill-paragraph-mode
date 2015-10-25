@@ -28,6 +28,7 @@
 
 (defun afp-bullet-list-in-comments? ()
   "Try to check if we are inside a bullet pointed list."
+  (comment-normalize-vars)
   (and (comment-only-p (point-at-bol) (point-at-eol))
 
        ;; TODO: extend to match any line in paragraph
