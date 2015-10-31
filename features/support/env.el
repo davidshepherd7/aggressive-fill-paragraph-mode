@@ -11,7 +11,7 @@
 
 (add-to-list 'load-path aggressive-fill-paragraph-mode-root-path)
 
-(require 'aggressive-fill-paragraph-mode)
+(require 'aggressive-fill-paragraph)
 (require 'espuds)
 (require 'ert)
 

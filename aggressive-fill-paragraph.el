@@ -120,28 +120,32 @@ taking care with special cases for documentation comments."
    (t #'fill-paragraph)))
 
 
-(defun afp-fill-then-insert-space ()
-  "The main function: fill the paragraph (if not suppressed,
-using the appropriate fill function), then insert a space."
-  (interactive)
-  (when (not (afp-suppress-fill?))
-    (funcall (afp-choose-fill-function)))
-  (insert " "))
+(defun aggressive-fill-paragraph-post-self-insert-function ()
+  "Fill paragraph when space is inserted and fill is not disabled
+for any reason."
+  (when (and (eq ?\  last-command-event))
+    ;;            (not (afp-suppress-fill?)))
 
+    ;; Fill
+    (funcall (afp-choose-fill-function))
 
-(defun afp-insert-space ()
-  (interactive)
-  (insert " "))
+    ;; The fill will have removed the space, so we need to re-insert it.
+    (insert " ")))
 
 
 
 ;; Minor mode set up
 
 (define-minor-mode aggressive-fill-paragraph-mode
-  nil
-  :keymap (let ((map (make-sparse-keymap)))
-            (define-key map (kbd "SPC") #'afp-fill-then-insert-space)
-            map))
+  "Toggle automatic paragraph fill when spaces are inserted in comments."
+  :global nil
+  :group 'electricity
+
+  (if aggressive-fill-paragraph-mode
+      (add-hook 'post-self-insert-hook
+                #'aggressive-fill-paragraph-post-self-insert-function nil t)
+    (remove-hook 'post-self-insert-hook
+                 #'aggressive-fill-paragraph-post-self-insert-function t)))
 
 (defun afp-setup-recommended-hooks ()
   "Install hooks to enable aggressive-fill-paragraph-mode in recommended major modes."
