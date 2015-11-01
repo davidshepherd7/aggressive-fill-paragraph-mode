@@ -28,7 +28,7 @@
 
 (defun afp-bullet-list-in-comments? ()
   "Try to check if we are inside a bullet pointed list."
-  (comment-normalize-vars)
+  ;; (comment-normalize-vars)
   (and (comment-only-p (point-at-bol) (point-at-eol))
 
        ;; TODO: extend to match any line in paragraph
@@ -47,9 +47,11 @@
            (eql (org-element-type (org-element-at-point)) 'table-row))))
 
 (defcustom afp-suppress-fill-pfunction-list
-  (list #'afp-markdown-inside-code-block?
-        #'afp-bullet-list-in-comments?
-        #'afp-in-org-table?)
+  (list
+   ;; #'afp-markdown-inside-code-block?
+   #'afp-bullet-list-in-comments?
+   ;; #'afp-in-org-table?
+   )
   "List of predicate functions of no arguments, if any of these
   functions returns false then paragraphs will not be
   automatically filled."
@@ -123,14 +125,15 @@ taking care with special cases for documentation comments."
 (defun aggressive-fill-paragraph-post-self-insert-function ()
   "Fill paragraph when space is inserted and fill is not disabled
 for any reason."
-  (when (and (eq ?\  last-command-event))
-    ;;            (not (afp-suppress-fill?)))
+  (when (and (eq ?\  last-command-event)
+             (not (afp-suppress-fill?)))
 
-    ;; Fill
+    ;; Delete + reinsert space, this is needed because we don't know if
+    ;; filling will remove spaces.
+    (backward-delete-char 1)
     (funcall (afp-choose-fill-function))
-
-    ;; The fill will have removed the space, so we need to re-insert it.
-    (insert " ")))
+    (insert " "))
+  )
 
 
 

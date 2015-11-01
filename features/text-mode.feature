@@ -18,3 +18,11 @@ Feature: text-mode
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
 porttitor est justo, sed dignissim enim
 """
+
+  Scenario: Fill doesn't double space
+    When I type "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor est justo, sed dignissim enim "
+    Then I should not see "  "
+
+  Scenario: Space doesn't double space
+    When I type "foo bar"
+    Then I should see "foo bar"
