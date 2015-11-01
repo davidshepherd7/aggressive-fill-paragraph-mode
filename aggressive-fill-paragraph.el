@@ -50,7 +50,7 @@
   (list
    ;; #'afp-markdown-inside-code-block?
    #'afp-bullet-list-in-comments?
-   ;; #'afp-in-org-table?
+   #'afp-in-org-table?
    )
   "List of predicate functions of no arguments, if any of these
   functions returns false then paragraphs will not be
