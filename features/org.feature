@@ -20,3 +20,7 @@ Scenario: org mode
     | 1 | 2 | 3 |
     | a | b | c |
     """
+
+  Scenario: Org comment wrapping doesn't trigger errors
+    When I insert "#"
+    When I type " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor est justo, sed dignissim enim "

@@ -28,7 +28,9 @@
 
 (defun afp-bullet-list-in-comments? ()
   "Try to check if we are inside a bullet pointed list."
-  ;; (comment-normalize-vars)
+  (comment-normalize-vars t) ;; t means: don't error if comment-start is
+                             ;; not set (i.e. in text mode), just do
+                             ;; nothing instead.
   (and (comment-only-p (point-at-bol) (point-at-eol))
 
        ;; TODO: extend to match any line in paragraph
