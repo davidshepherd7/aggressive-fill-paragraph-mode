@@ -64,6 +64,11 @@
   "List of major modes in which only comments should be filled."
   :group 'aggressive-fill-paragraph)
 
+(defcustom afp-fill-keys
+  (list ?\ ?.)
+  "List of keys after which to fill paragraph."
+  :group 'agressive-fill-paragraph)
+
 
 
 ;; The main functions
@@ -127,15 +132,14 @@ taking care with special cases for documentation comments."
 (defun aggressive-fill-paragraph-post-self-insert-function ()
   "Fill paragraph when space is inserted and fill is not disabled
 for any reason."
-  (when (and (eq ?\  last-command-event)
+  (when (and (-contains? afp-fill-keys last-command-event)
              (not (afp-suppress-fill?)))
 
-    ;; Delete + reinsert space, this is needed because we don't know if
-    ;; filling will remove spaces.
+    ;; Delete the charcter before filling and reinsert after. This is
+    ;; needed because we don't know if filling will remove whitespace.
     (backward-delete-char 1)
     (funcall (afp-choose-fill-function))
-    (insert " "))
-  )
+    (insert last-command-event)))
 
 
 

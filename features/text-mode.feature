@@ -14,10 +14,10 @@ Feature: text-mode
   Scenario: Text mode paragraph fill
     When I type "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor est justo, sed dignissim enim "
     Then I should see:
-"""
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-porttitor est justo, sed dignissim enim
-"""
+    """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+    porttitor est justo, sed dignissim enim
+    """
 
   Scenario: Fill doesn't double space
     When I type "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor est justo, sed dignissim enim "
@@ -26,3 +26,22 @@ porttitor est justo, sed dignissim enim
   Scenario: Space doesn't double space
     When I type "foo bar"
     Then I should see "foo bar"
+
+  Scenario: Fill on .
+    When I insert "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor est justo, sed dignissim enim"
+    When I type "."
+    Then I should see:
+    """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+    porttitor est justo, sed dignissim enim.
+    """
+
+  Scenario: Fill on arbitrary characters
+    When I add @ to afp-fill-keys
+    When I insert "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor est justo, sed dignissim enim"
+    When I type "@"
+    Then I should see:
+    """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+    porttitor est justo, sed dignissim enim@
+    """

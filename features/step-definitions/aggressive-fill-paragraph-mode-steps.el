@@ -2,30 +2,6 @@
 ;; files in this directory whose names end with "-steps.el" will be
 ;; loaded automatically by Ecukes.
 
-(Given "^I have \"\\(.+\\)\"$"
-  (lambda (something)
-    ;; ...
-    ))
-
-(When "^I have \"\\(.+\\)\"$"
-  (lambda (something)
-    ;; ...
-    ))
-
-(Then "^I should have \"\\(.+\\)\"$"
-  (lambda (something)
-    ;; ...
-    ))
-
-(And "^I have \"\\(.+\\)\"$"
-  (lambda (something)
-    ;; ...
-    ))
-
-(But "^I should not have \"\\(.+\\)\"$"
-     (lambda (something)
-       ;; ...
-       ))
 
 (When "^I fill the paragraph"
       (lambda ()
@@ -39,6 +15,11 @@
 (When "^I add an abbrev \"myabbrev\" -> \"X@Y1"
       (lambda ()
         (define-abbrev global-abbrev-table "myabbrev" "X@Y1")))
+
+(When "^I add @ to afp-fill-keys$"
+      (lambda ()
+        (add-to-list 'afp-fill-keys ?@)))
+
 
 
 ;; Use these rather than espud's I turn on ...-mode because of the weird
