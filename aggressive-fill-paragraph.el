@@ -50,7 +50,7 @@
 
 (defcustom afp-suppress-fill-pfunction-list
   (list
-   ;; #'afp-markdown-inside-code-block?
+   #'afp-markdown-inside-code-block?
    #'afp-bullet-list-in-comments?
    #'afp-in-org-table?
    )

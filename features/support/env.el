@@ -15,6 +15,9 @@
 (require 'espuds)
 (require 'ert)
 
+;; For testing
+(require 'markdown-mode)
+
 (Setup
  ;; Before anything has run
  )
