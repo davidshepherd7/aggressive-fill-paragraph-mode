@@ -6,8 +6,11 @@ script:
 
 env:
   matrix:
+    - EVM_EMACS=emacs-23.4-bin
+    - EVM_EMACS=emacs-24.3-bin
     - EVM_EMACS=emacs-24.5-bin
     - EVM_EMACS=emacs-24.4-bin
+    - EVM_EMACS=emacs-git-snapshot-travis
 matrix:
   fast_finish: true
 
