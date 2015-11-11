@@ -15,26 +15,36 @@
 (require 'dash)
 
 
-;; Functions for testing conditions to suppress fill-paragraph
+;; Helpers
+
+(defun afp-inside-comment? ()
+  (nth 4 (syntax-ppss)))
 
 (defun afp-current-line ()
   (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
+
+
+;; Functions for testing conditions to suppress fill-paragraph
 
 (defun afp-markdown-inside-code-block? ()
   """Basic test for indented code blocks in markdown."""
   (and (string-equal major-mode "markdown-mode")
        (string-match-p "^    " (afp-current-line))))
 
+(defun afp-start-of-comment? ()
+  "Check if we have just started writing a new comment line (it's
+  annoying if you are trying to write a list but it keeps getting
+  filled before you can type the * which afp recognises as a
+  list)."
+  (and (string-match-p (concat))))
 
 (defun afp-bullet-list-in-comments? ()
-  "Try to check if we are inside a bullet pointed list."
-  (comment-normalize-vars t) ;; t means: don't error if comment-start is
-                             ;; not set (i.e. in text mode), just do
-                             ;; nothing instead.
-  (and (comment-only-p (point-at-bol) (point-at-eol))
+  "Try to check if we are inside a bullet pointed list bulleted
+by *, + or -."
+  (and (afp-inside-comment?)
 
        ;; TODO: extend to match any line in paragraph
-       (string-match-p (concat "^[ ]*" comment-start "[ ]*[-\\*\\+]")
+       (string-match-p (concat "^\\s-*" comment-start "\\s-*[-\\*\\+]")
                        (afp-current-line))))
 
 ;; Org mode tables have their own filling behaviour which results in the

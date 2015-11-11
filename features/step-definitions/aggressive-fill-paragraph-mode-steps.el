@@ -34,3 +34,7 @@
 
 (When "^I force enable abbrev-mode"
       (lambda () (abbrev-mode 1)))
+
+(When "^I turn off \\(.+\\)$"
+      (lambda (mode-name)
+        (funcall (intern mode-name) 0)))
