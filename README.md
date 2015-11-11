@@ -1,6 +1,9 @@
 Aggressive fill paragraph
 ========================
 
+[![travis](https://travis-ci.org/davidshepherd7/aggressive-fill-paragraph-mode.svg?branch=master)](https://travis-ci.org/davidshepherd7/aggressive-fill-paragraph-mode) [![melpa](http://melpa.org/packages/aggressive-fill-paragraph-badge.svg)](http://melpa.org/#/aggressive-fill-paragraph) [![GPLv3](http://img.shields.io/badge/license-GNU%20GPLv3-blue.svg)](https://github.com/davidshepherd7/aggressive-fill-paragraph-mode/blob/master/LICENSE)
+
+
 An emacs minor-mode for keeping paragraphs filled in both comments and prose.
 
 Each time a space is inserted the current paragraph is refilled.
