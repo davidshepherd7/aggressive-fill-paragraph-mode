@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;;; aggressive-fill-paragraph.el --- A mode to automatically keep paragraphs filled
 
 ;; Author: David Shepherd <davidshepherd7@gmail.com>
