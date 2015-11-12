@@ -155,7 +155,7 @@ for any reason."
 
 
 ;; Minor mode set up
-
+;;;###autoload
 (define-minor-mode aggressive-fill-paragraph-mode
   "Toggle automatic paragraph fill when spaces are inserted in comments."
   :global nil
@@ -167,6 +167,7 @@ for any reason."
     (remove-hook 'post-self-insert-hook
                  #'aggressive-fill-paragraph-post-self-insert-function t)))
 
+;;;###autoload
 (defun afp-setup-recommended-hooks ()
   "Install hooks to enable aggressive-fill-paragraph-mode in recommended major modes."
   (interactive)
