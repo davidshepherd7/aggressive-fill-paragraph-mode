@@ -31,12 +31,12 @@ Alternatively use
 to enable aggressive-fill-paragraph-mode only in specified major modes.
 
 
-Compatability with new major modes
+Compatibility with new major modes
 ---------------------------------
 
 There seems to be little consensus between different major modes on what
 exactly `fill-paragraph` should fill. For example some programming modes
-stick to filling commments, while others attempt to fill other things such
+stick to filling comments, while others attempt to fill other things such
 as code and strings.
 
 Typically automatic filling of code paragraphs is not very helpful, so we
