@@ -71,7 +71,7 @@ by *, + or -."
   :group 'aggressive-fill-paragraph)
 
 (defcustom afp-fill-comments-only-mode-list
-  (list 'emacs-lisp-mode 'sh-mode 'python-mode)
+  (list 'emacs-lisp-mode 'sh-mode 'python-mode 'js-mode)
   "List of major modes in which only comments should be filled."
   :group 'aggressive-fill-paragraph)
 
