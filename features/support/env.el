@@ -20,6 +20,17 @@
 
 (Setup
  ;; Before anything has run
+
+ (when (and (= emacs-major-version 25))
+   (require 'cl-preloaded)
+   (setf (symbol-function 'cl--assertion-failed)
+         (lambda (form &optional string sargs args)
+           "This function has been modified by espuds to remove an incorrect manual call
+to the debugger in emacs 25.1. The modified version should only be used for
+running the espuds tests."
+           (if string
+               (apply #'error string (append sargs args))
+             (signal 'cl-assertion-failed `(,form ,@sargs))))))
  )
 
 (Before
