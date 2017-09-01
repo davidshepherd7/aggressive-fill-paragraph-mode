@@ -30,6 +30,9 @@ Alternatively use
 
 to enable aggressive-fill-paragraph-mode only in specified major modes.
 
+You can customise which keys trigger a fill with the `afp-fill-keys` variable,
+by default both ` ` and `.` are used.
+
 
 Compatibility with new major modes
 ---------------------------------
