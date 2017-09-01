@@ -41,6 +41,10 @@ getting filled before you can type the * which afp recognises
 as a list."
   (and (string-match-p (concat))))
 
+(defun afp-repeated-whitespace? ()
+  "Check if this is the second whitespace character in a row."
+  (looking-back "\\s-\\s-" (- (point) 2)))
+
 (defun afp-bullet-list-in-comments? ()
   "Try to check if we are inside a bullet pointed list.
 
@@ -65,6 +69,7 @@ Bulleted by *, + or -."
 
 (defcustom afp-suppress-fill-pfunction-list
   (list
+   #'afp-repeated-whitespace?
    #'afp-markdown-inside-code-block?
    #'afp-bullet-list-in-comments?
    #'afp-in-org-table?

@@ -45,3 +45,19 @@ Feature: text-mode
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
     porttitor est justo, sed dignissim enim@
     """
+
+  Scenario: Can type double space
+    When I type "foo  bar"
+    Then I should see "foo  bar"
+
+  Scenario: Can double space full stops in paragraphs
+    When I type "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Pellentesque porttitor est justo, sed dignissim enim"
+    Then I should see:
+    """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Pellentesque
+    porttitor est justo, sed dignissim enim
+    """
+
+  Scenario: Can type spaces after tabs
+    When I type "foo	 bar"
+    Then I should see "foo	 bar"
