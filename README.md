@@ -1,7 +1,8 @@
 Aggressive fill paragraph
 ========================
 
-[![travis](https://travis-ci.org/davidshepherd7/aggressive-fill-paragraph-mode.svg?branch=master)](https://travis-ci.org/davidshepherd7/aggressive-fill-paragraph-mode) [![melpa](http://melpa.org/packages/aggressive-fill-paragraph-badge.svg)](http://melpa.org/#/aggressive-fill-paragraph) 
+[![travis](https://github.com/davidshepherd7/aggressive-fill-paragraph-mode/workflows/CI/badge.svg)](https://github.com/davidshepherd7/aggressive-fill-paragraph-mode/actions)
+[![melpa](http://melpa.org/packages/aggressive-fill-paragraph-badge.svg)](http://melpa.org/#/aggressive-fill-paragraph) 
 
 
 An emacs minor-mode for keeping paragraphs filled in both comments and prose.
