@@ -167,7 +167,8 @@ for any reason."
 
 ;;;###autoload
 (defun afp-setup-recommended-hooks ()
-  "Install hooks to enable function ‘aggressive-fill-paragraph-mode’ in recommended major modes."
+  "Install hooks to enable function ‘aggressive-fill-paragraph-mode’
+in recommended major modes."
   (interactive)
 
   (add-hook 'text-mode-hook #'aggressive-fill-paragraph-mode)
