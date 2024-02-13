@@ -33,14 +33,6 @@
   (and (string-equal major-mode "markdown-mode")
        (string-match-p "^    " (afp-current-line))))
 
-(defun afp-start-of-comment? ()
-  "Check if we have just started writing a new comment line.
-
-It's annoying if you are trying to write a list but it keeps
-getting filled before you can type the * which afp recognises
-as a list."
-  (and (string-match-p (concat))))
-
 (defun afp-repeated-whitespace? ()
   "Check if this is the second whitespace character in a row."
   (looking-back "\\s-\\s-" (- (point) 2)))
