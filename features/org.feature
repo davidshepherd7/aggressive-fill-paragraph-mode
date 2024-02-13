@@ -1,7 +1,7 @@
 Scenario: org mode
 
   Background:
-    When I turn on org-mode
+    # TODO: We probably should be enabling org-mode here
     When I force enable aggressive-fill-paragraph-mode
     When I clear the buffer
 
