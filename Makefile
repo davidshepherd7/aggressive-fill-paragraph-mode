@@ -1,8 +1,7 @@
 EMACS=emacs
-CASK ?= cask
 
 build :
-	cask exec $(EMACS) -Q --batch --eval             \
+	cask emacs -Q --batch --eval             \
 	    "(progn                                \
 	      (setq byte-compile-error-on-warn t)  \
 	      (batch-byte-compile))" *.el
@@ -13,9 +12,9 @@ clean :
 test: build unit ecukes
 
 ecukes: build
-	${CASK} exec ecukes
+	cask exec ecukes
 
 install:
-	${CASK} install
+	cask install
 
 .PHONY:	all test unit ecukes install clean build
