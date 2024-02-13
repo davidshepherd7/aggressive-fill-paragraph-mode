@@ -58,7 +58,6 @@ Bulleted by *, + or -."
 ;; Org mode tables have their own filling behaviour which results in the
 ;; cursor being moved to the start of the table element, which is no good
 ;; for us! See issue #6.
-(require 'org)
 (declare-function org-element-type "org-element" element)
 (defun afp-in-org-table? ()
   "Check if point is inside an ‘org-mode’ table."
