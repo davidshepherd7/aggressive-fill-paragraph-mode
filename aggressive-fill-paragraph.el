@@ -23,7 +23,7 @@
 
 (defun afp-current-line ()
   "Get the current line."
-  (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
+  (buffer-substring-no-properties (line-beginning-position) (line-end-position)))
 
 
 ;; Functions for testing conditions to suppress fill-paragraph
