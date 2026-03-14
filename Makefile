@@ -9,12 +9,12 @@ build :
 clean :
 	@rm -f *.elc
 
-test: build unit ecukes
+test: build unit
 
-ecukes: build
-	cask exec ecukes
+unit: build
+	cask exec ert-runner
 
 install:
 	cask install
 
-.PHONY:	all test unit ecukes install clean build
+.PHONY:	all test unit install clean build
